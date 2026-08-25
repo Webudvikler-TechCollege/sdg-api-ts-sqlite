@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id           Int     @id @default(autoincrement())
+  firstname    String  @default("Tim")
+  lastname     String  @default("Vinther Sørensen")
+  email        String  @unique
+  password     String
+  description  String?
+  image        String?
+  refreshToken String
+  isActive     Boolean @default(true)
+
+  @@map("users") // -> Navn på tabel
+}
+
+model Goal {
+  id          Int    @id @default(autoincrement())
+  title       String
+  byline      String
+  description String
+  color       String
+  icon        String
+  video_url   String
+  image_url   String
+
+  targets Target[]
+
+  @@map("goals")
+}
+
+model Target {
+  id          Int    @id @default(autoincrement())
+  goal_id     Int
+  sort_number Int
+  title       String
+  description String
+
+  goal Goal @relation(fields: [goal_id], references: [id])
+
+  @@map("targets")
+}
+
+model Context {
+  id      Int    @id @default(autoincrement())
+  title   String
+  context String
+  image   String
+
+  @@map("context")
+}
+
+model Education {
+  id    Int    @id @default(autoincrement())
+  name  String
+  color String
+
+  @@map("education")
+}
+
+model Comment {
+  id       Int      @id @default(autoincrement())
+  title    String
+  comment  String
+  user_id  Int
+  goal_id  Int
+  isActive Boolean
+  created  DateTime
+
+  @@map("comments")
+}
