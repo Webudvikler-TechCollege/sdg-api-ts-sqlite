@@ -62,7 +62,7 @@ class CommentController {
       comment,
       user_id,
       goal_id,
-      isActive
+      active
     } = req.body;
 
     if (!title || !comment || !user_id || !goal_id) {
@@ -79,7 +79,7 @@ class CommentController {
           comment,
           user_id: Number(user_id),
           goal_id: Number(goal_id),
-          isActive: isActive ?? true,
+          active: Boolean(active),
           created: new Date()
         }
       });
@@ -105,9 +105,7 @@ class CommentController {
     const {
       title,
       comment,
-      user_id,
-      goal_id,
-      isActive
+      active
     } = req.body;
 
     try {
@@ -119,9 +117,7 @@ class CommentController {
         data: {
           title,
           comment,
-          user_id: Number(user_id),
-          goal_id: Number(goal_id),
-          isActive
+          active: Boolean(active)
         }
       });
 

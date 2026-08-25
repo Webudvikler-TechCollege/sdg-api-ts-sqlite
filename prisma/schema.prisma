@@ -23,7 +23,7 @@ model User {
   refreshToken String
   isActive     Boolean @default(true)
 
-  comments Comment[]
+  comments  Comment[]
 
   @@map("users") // -> Navn på tabel
 }
@@ -38,8 +38,8 @@ model Goal {
   video_url   String
   image_url   String
 
-  targets Target[]
-  comments Comment[]
+  targets   Target[]
+  comments  Comment[]
 
   @@map("goals")
 }
@@ -73,26 +73,17 @@ model Education {
   @@map("education")
 }
 
-model Favorite {
-  id       Int      @id @default(autoincrement())
-  user_id  Int
-  goal_id  Int
-
-  @@map("favorites")
-}
-
 model Comment {
-  id       Int      @id @default(autoincrement())
-  title    String
-  comment  String
-  user_id  Int
-  goal_id  Int
-  active Boolean
-  created  DateTime
+  id      Int      @id @default(autoincrement())
+  title   String
+  comment String
+  user_id Int
+  goal_id Int
+  active  Boolean
+  created DateTime
 
   goal Goal @relation(fields: [goal_id], references: [id])
   user User @relation(fields: [user_id], references: [id])
-
 
   @@map("comments")
 }
