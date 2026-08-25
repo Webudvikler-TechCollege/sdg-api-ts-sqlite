@@ -23,6 +23,8 @@ model User {
   refreshToken String
   isActive     Boolean @default(true)
 
+  comments Comment[]
+
   @@map("users") // -> Navn på tabel
 }
 
@@ -37,6 +39,7 @@ model Goal {
   image_url   String
 
   targets Target[]
+  comments Comment[]
 
   @@map("goals")
 }
@@ -86,6 +89,10 @@ model Comment {
   goal_id  Int
   active Boolean
   created  DateTime
+
+  goal Goal @relation(fields: [goal_id], references: [id])
+  user User @relation(fields: [user_id], references: [id])
+
 
   @@map("comments")
 }

@@ -97,7 +97,7 @@ const castRow = async (model: SeedModelName, row: Record<string, any>) => {
     } else if (type === "boolean") {
       converted[key] = val === "1" || val === "true";
     } else if (type === "date") {
-      converted[key] = new Date(val);
+      converted[key] = new Date(Number(val*1000));
     } else {
       if (key === "password") {
         converted[key] = await bcrypt.hash(val, 10);

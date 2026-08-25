@@ -38,7 +38,7 @@ export const fieldTypes: Record<string, Record<string, 'string' | 'number' | 'bo
     name: 'string',
     color: 'string'
   },
-  comments: {
+  comment: {
     id: 'number',
     title: 'string',
     comment: 'string',
