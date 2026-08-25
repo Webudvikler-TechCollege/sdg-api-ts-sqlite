@@ -38,13 +38,13 @@ export const fieldTypes: Record<string, Record<string, 'string' | 'number' | 'bo
     name: 'string',
     color: 'string'
   },
-  usercomment: {
+  comments: {
     id: 'number',
     title: 'string',
     comment: 'string',
     user_id: 'number',
     goal_id: 'number',
     created: 'date',
-    isActive: 'boolean'
+    active: 'boolean'
   },
 };

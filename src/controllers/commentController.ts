@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import { prisma } from '../prisma.js';
+import { Request, Response } from "express";
+import { prisma } from "../prisma.js";
 
 class CommentController {
 
@@ -16,19 +16,20 @@ class CommentController {
       console.error(error);
 
       res.status(500).json({
-        error: 'Failed to fetch comments'
+        error: "Failed to fetch comments"
       });
 
     }
   };
 
+
   getRecordsByGoalId = async (req: Request, res: Response) => {
 
-    const goalId = req.goal?.id;
+    const { goalId } = req.params;
 
     if (!goalId) {
-      return res.status(401).json({
-        error: 'Unauthorized'
+      return res.status(400).json({
+        error: "Goal ID is required"
       });
     }
 
@@ -36,12 +37,7 @@ class CommentController {
 
       const data = await prisma.comment.findMany({
         where: {
-          goal_id: goalId
-        },
-        select: {
-          CommentedUserId: true,
-          numStars: true,
-          comment: true
+          goal_id: Number(goalId)
         }
       });
 
@@ -52,36 +48,39 @@ class CommentController {
       console.error(error);
 
       res.status(500).json({
-        error: 'Failed to fetch Comments'
+        error: "Failed to fetch comments"
       });
 
     }
   };
 
+
   createRecord = async (req: Request, res: Response) => {
 
-    const CommenterId = req.user?.id;
-
     const {
-      CommentedUserId,
+      title,
       comment,
-      numStars
+      user_id,
+      goal_id,
+      isActive
     } = req.body;
 
-    if (!CommenterId || !CommentedUserId || !comment || !numStars) {
+    if (!title || !comment || !user_id || !goal_id) {
       return res.status(400).json({
-        error: 'All fields are required'
+        error: "All fields are required"
       });
     }
 
     try {
 
-      const data = await prisma.Comment.create({
+      const data = await prisma.comment.create({
         data: {
-          CommenterId: Number(CommenterId),
-          CommentedUserId: Number(CommentedUserId),
+          title,
           comment,
-          numStars: Number(numStars)
+          user_id: Number(user_id),
+          goal_id: Number(goal_id),
+          isActive: isActive ?? true,
+          created: new Date()
         }
       });
 
@@ -92,32 +91,37 @@ class CommentController {
       console.error(error);
 
       res.status(500).json({
-        error: 'Failed to create Comment'
+        error: "Failed to create comment"
       });
 
     }
   };
+
 
   updateRecord = async (req: Request, res: Response) => {
 
     const { id } = req.params;
 
     const {
-      numStars,
+      title,
       comment,
-      CommentedUserId
+      user_id,
+      goal_id,
+      isActive
     } = req.body;
 
     try {
 
-      const data = await prisma.Comment.update({
+      const data = await prisma.comment.update({
         where: {
           id: Number(id)
         },
         data: {
-          numStars: Number(numStars),
+          title,
           comment,
-          CommentedUserId: Number(CommentedUserId)
+          user_id: Number(user_id),
+          goal_id: Number(goal_id),
+          isActive
         }
       });
 
@@ -128,11 +132,12 @@ class CommentController {
       console.error(error);
 
       res.status(500).json({
-        error: 'Failed to update Comment'
+        error: "Failed to update comment"
       });
 
     }
   };
+
 
   deleteRecord = async (req: Request, res: Response) => {
 
@@ -140,14 +145,14 @@ class CommentController {
 
     try {
 
-      await prisma.Comment.delete({
+      await prisma.comment.delete({
         where: {
           id: Number(id)
         }
       });
 
       res.status(200).json({
-        message: 'Comment deleted'
+        message: "Comment deleted"
       });
 
     } catch (error) {
@@ -155,11 +160,12 @@ class CommentController {
       console.error(error);
 
       res.status(500).json({
-        error: 'Failed to delete Comment'
+        error: "Failed to delete comment"
       });
 
     }
   };
+
 }
 
 export const commentController = new CommentController();

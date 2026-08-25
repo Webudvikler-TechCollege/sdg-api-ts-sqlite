@@ -70,13 +70,21 @@ model Education {
   @@map("education")
 }
 
+model Favorite {
+  id       Int      @id @default(autoincrement())
+  user_id  Int
+  goal_id  Int
+
+  @@map("favorites")
+}
+
 model Comment {
   id       Int      @id @default(autoincrement())
   title    String
   comment  String
   user_id  Int
   goal_id  Int
-  isActive Boolean
+  active Boolean
   created  DateTime
 
   @@map("comments")
