@@ -38,3 +38,8 @@ npx prisma studio
 Nu skulle du gerne kunne se en oversigt over dine modeller og data i din browser. Det er Prismas admin-panel til din database.
 
 Klik på en af modellerne til venstre hvis du vil se og redigere data.# sdg-api-ts-sqlite
+
+### Postman Docs
+Du kan hente dokumentation og teste API'et via Postman fra nedenstående link.
+
+[https://documenter.getpostman.com/view/6540576/TVemBVNN](https://documenter.getpostman.com/view/6540576/TVemBVNN)
