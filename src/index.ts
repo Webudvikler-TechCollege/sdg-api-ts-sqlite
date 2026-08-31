@@ -6,6 +6,7 @@ import { authRoutes } from './routes/authRoutes.js';
 import { goalRoutes } from './routes/goalRoutes.js';
 import { educationRoutes } from './routes/educationRoutes.js';
 import { commentRoutes } from './routes/commentRoutes.js';
+import { faqRoutes } from './routes/faqRoutes.js';
 
 dotenv.config();
 const port = process.env.PORT || 3000
@@ -20,6 +21,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/goals', goalRoutes);
 app.use('/api/education', educationRoutes);
 app.use('/api/comments', commentRoutes);
+app.use('/api/faq', faqRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

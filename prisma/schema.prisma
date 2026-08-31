@@ -87,3 +87,11 @@ model Comment {
 
   @@map("comments")
 }
+
+model FAQ {
+  id      Int    @id @default(autoincrement())
+  title   String
+  context String
+
+  @@map("faq")
+}

@@ -47,4 +47,10 @@ export const fieldTypes: Record<string, Record<string, 'string' | 'number' | 'bo
     created: 'date',
     active: 'boolean'
   },
+  faq: {
+    id: 'number',
+    title: 'string',
+    context: 'string'
+  },
+
 };

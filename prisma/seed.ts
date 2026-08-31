@@ -25,7 +25,8 @@ const order = [
   "target",
   "context",
   "education",
-  "comment"
+  "comment",
+  "faq"
 ] as const;
 
 type SeedModelName = typeof order[number];
