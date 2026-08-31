@@ -88,7 +88,7 @@ model Comment {
   @@map("comments")
 }
 
-model FAQ {
+model Faq {
   id      Int    @id @default(autoincrement())
   title   String
   context String
