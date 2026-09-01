@@ -21,6 +21,7 @@ const directory = path.join(__dirname, "csv");
 // Array til definition af rækkefølge
 const order = [
   "user",
+  "theme",
   "goal",
   "target",
   "context",

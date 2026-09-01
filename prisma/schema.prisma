@@ -28,6 +28,15 @@ model User {
   @@map("users") // -> Navn på tabel
 }
 
+model Theme {
+  id          Int    @id @default(autoincrement())
+  title       String
+
+  goals Goal[]
+
+  @@map("themes")
+}
+
 model Goal {
   id          Int    @id @default(autoincrement())
   title       String
@@ -37,7 +46,9 @@ model Goal {
   icon        String
   video_url   String
   image_url   String
+  theme_id    Int
 
+  theme Theme @relation(fields: [theme_id], references: [id])
   targets   Target[]
   comments  Comment[]
 

@@ -10,6 +10,10 @@ export const fieldTypes: Record<string, Record<string, 'string' | 'number' | 'bo
     refreshToken: 'string',
     isActive: 'boolean'
   },
+  theme: {
+    id: 'number',
+    title: 'string'
+  },
   goal: {
     id: 'number',
     title: 'string',
@@ -18,7 +22,8 @@ export const fieldTypes: Record<string, Record<string, 'string' | 'number' | 'bo
     color: 'string',
     icon: 'string',
     video_url: 'string',
-    image_url: 'string'
+    image_url: 'string',
+    theme_id: 'number'
   },
   context: {
     id: 'number',
