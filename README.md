@@ -1,4 +1,3 @@
-````markdown
 # Sustainable Development Goals API
 
 Dette API fungerer som datagrundlag for React-projektet om FN's verdensmål.
@@ -74,4 +73,3 @@ Klik på en af modellerne til venstre hvis du vil se og redigere data.
 Du kan hente dokumentation og teste API'et via Postman fra nedenstående link.
 
 [[https://documenter.getpostman.com/view/6540576/TVemBVNN\](https://documenter.getpostman.com/view/6540576/TVemBVNN)](https://documenter.getpostman.com/view/6540576/TVemBVNN]\(https://documenter.getpostman.com/view/6540576/TVemBVNN\))
-````
