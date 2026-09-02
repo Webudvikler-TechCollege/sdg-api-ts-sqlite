@@ -22,8 +22,8 @@ class GoalController {
     }
   };
 
-  getRecordsByThemeId = async (req: Request, res: Response) => {
-    const { theme_id } = req.params;
+  getRecordsByThemeSlug = async (req: Request, res: Response) => {
+    const theme_slug = String(req.params.theme_slug);
 
     try {
       const result = await prisma.goal.findMany({
@@ -35,7 +35,9 @@ class GoalController {
           icon: true
         },
         where: {
-          theme_id: Number(theme_id)
+          theme: {
+            slug: theme_slug
+          }
         }
       });
 
@@ -55,16 +57,16 @@ class GoalController {
           id: Number(id)
         },
         include: {
-            targets: {
-              select: {
-                id: true,
-                title: true,
-                description: true
-              },
-              orderBy: {
-                sort_number: 'asc'
-              }
+          targets: {
+            select: {
+              id: true,
+              title: true,
+              description: true
+            },
+            orderBy: {
+              sort_number: 'asc'
             }
+          }
         }
       });
 
