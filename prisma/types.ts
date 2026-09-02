@@ -12,7 +12,8 @@ export const fieldTypes: Record<string, Record<string, 'string' | 'number' | 'bo
   },
   theme: {
     id: 'number',
-    title: 'string'
+    title: 'string',
+    slug: 'string'
   },
   goal: {
     id: 'number',

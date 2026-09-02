@@ -22,6 +22,30 @@ class GoalController {
     }
   };
 
+  getRecordsByThemeId = async (req: Request, res: Response) => {
+    const { theme_id } = req.params;
+
+    try {
+      const result = await prisma.goal.findMany({
+        select: {
+          id: true,
+          title: true,
+          byline: true,
+          color: true,
+          icon: true
+        },
+        where: {
+          theme_id: Number(theme_id)
+        }
+      });
+
+      res.json(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to fetch goals' });
+    }
+  };
+
   getRecord = async (req: Request, res: Response) => {
     const { id } = req.params;
 
