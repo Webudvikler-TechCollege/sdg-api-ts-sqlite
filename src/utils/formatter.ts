@@ -1,4 +1,4 @@
-export const toBoolean = val => {
+export const toBoolean = (val: boolean | string | number) => {
     if([false, 'false', 0, '0'].includes(val)) {
         return Boolean(false)
     } else if([true, 'true', 1, '1'].includes(val)) {
