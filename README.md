@@ -70,4 +70,4 @@ Klik på en af modellerne til venstre hvis du vil se og redigere data.
 
 Du kan hente dokumentation og teste API'et via Postman fra nedenstående link.
 
-[Hent API](https://documenter.getpostman.com/view/6540576/TVemBVNN)
+[Se Postman Dokumentation](https://documenter.getpostman.com/view/6540576/TVemBVNN) 
